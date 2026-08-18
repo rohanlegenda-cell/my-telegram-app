@@ -14,7 +14,8 @@
         .header-title h1 { font-size: 18px; }
         .header-title p { font-size: 12px; color: #64748b; }
 
-        .section-title { font-size: 14px; font-weight: 600; color: #818cf8; margin-bottom: 12px; text-transform: uppercase; }
+        .section-title { font-size: 14px; font-weight: 600; color: #818cf8; margin-top: 16px; margin-bottom: 12px; text-transform: uppercase; }
+        .section-title:first-of-type { margin-top: 0; }
 
         /* Сетка товаров */
         .products-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
@@ -64,10 +65,9 @@
         </div>
     </div>
 
+    <!-- РЯД 1: МАРК -->
     <div class="section-title">Каталог МАРК</div>
-
     <div class="products-grid">
-        <!-- РЯД 1 -->
         <div class="product-card" onclick="openModal('МАРК (большое)', 2500)">
             <div class="badges">
                 <span class="badge-discount">-15%</span>
@@ -103,35 +103,38 @@
                 <button class="buy-btn">⚡</button>
             </div>
         </div>
+    </div>
 
-        <!-- РЯД 2 -->
-        <div class="product-card" onclick="openModal('экстаз', 2000)">
+    <!-- РЯД 2: ЭКСТАЗИ -->
+    <div class="section-title">Каталог Экстази</div>
+    <div class="products-grid">
+        <div class="product-card" onclick="openModal('Экстази (большое)', 2800)">
             <div class="badges">
                 <span class="badge-discount">-10%</span>
                 <span class="badge-stock">В наличии</span>
             </div>
-            <img class="product-image" src="https://i.postimg.cc/85Mddw4H/image.jpg" alt="Товар 3">
-            <div class="product-title">Товар 3</div>
-            <div class="product-category">Размер: M</div>
-            <div class="stock-info">📦 В наличии: 15 шт.</div>
+            <img class="product-image" src="https://i.postimg.cc/85Mddw4H/image.jpg" alt="Экстази большое">
+            <div class="product-title">Экстази (большое)</div>
+            <div class="product-category">Размер: XL</div>
+            <div class="stock-info">📦 В наличии: 12 шт.</div>
             <div class="product-footer">
                 <div>
-                    <span class="current-price">2 000 сом</span>
-                    <span class="old-price">2 200</span>
+                    <span class="current-price">2 800 сом</span>
+                    <span class="old-price">3 100</span>
                 </div>
                 <button class="buy-btn">⚡</button>
             </div>
         </div>
 
-        <div class="product-card" onclick="openModal('экстаз', 1800)">
+        <div class="product-card" onclick="openModal('Экстази (мелкое)', 1800)">
             <div class="badges">
                 <span class="badge-discount">-15%</span>
                 <span class="badge-stock">В наличии</span>
             </div>
-            <img class="product-image" src="https://i.postimg.cc/85Mddw4H/image.jpg" alt="Товар 4">
-            <div class="product-title">Товар 4</div>
-            <div class="product-category">Размер: L</div>
-            <div class="stock-info">📦 В наличии: 8 шт.</div>
+            <img class="product-image" src="https://i.postimg.cc/85Mddw4H/image.jpg" alt="Экстази мелкое">
+            <div class="product-title">Экстази (мелкое)</div>
+            <div class="product-category">Размер: S</div>
+            <div class="stock-info">📦 В наличии: 20 шт.</div>
             <div class="product-footer">
                 <div>
                     <span class="current-price">1 800 сом</span>
@@ -140,81 +143,86 @@
                 <button class="buy-btn">⚡</button>
             </div>
         </div>
+    </div>
 
-        <!-- РЯД 3 -->
-        <div class="product-card" onclick="openModal('гаш', 3000)">
+    <!-- РЯД 3: ГАШИШ -->
+    <div class="section-title">Каталог Гашиш</div>
+    <div class="products-grid">
+        <div class="product-card" onclick="openModal('Гашиш (большое)', 3200)">
             <div class="badges">
                 <span class="badge-discount">-5%</span>
                 <span class="badge-stock">В наличии</span>
             </div>
-            <img class="product-image" src="https://i.postimg.cc/85Mddw4H/image.jpg" alt="Товар 5">
-            <div class="product-title">Товар 5</div>
+            <img class="product-image" src="https://i.postimg.cc/85Mddw4H/image.jpg" alt="Гашиш большое">
+            <div class="product-title">Гашиш (большое)</div>
             <div class="product-category">Размер: XL</div>
-            <div class="stock-info">📦 В наличии: 5 шт.</div>
+            <div class="stock-info">📦 В наличии: 8 шт.</div>
             <div class="product-footer">
                 <div>
-                    <span class="current-price">3 000 сом</span>
-                    <span class="old-price">3 200</span>
+                    <span class="current-price">3 200 сом</span>
+                    <span class="old-price">3 400</span>
                 </div>
                 <button class="buy-btn">⚡</button>
             </div>
         </div>
 
-        <div class="product-card" onclick="openModal('гаш', 1200)">
-            <div class="badges">
-                <span class="badge-discount">-25%</span>
-                <span class="badge-stock">В наличии</span>
-            </div>
-            <img class="product-image" src="https://i.postimg.cc/85Mddw4H/image.jpg" alt="Товар 6">
-            <div class="product-title">Товар 6</div>
-            <div class="product-category">Размер: S</div>
-            <div class="stock-info">📦 В наличии: 30 шт.</div>
-            <div class="product-footer">
-                <div>
-                    <span class="current-price">1 200 сом</span>
-                    <span class="old-price">1 600</span>
-                </div>
-                <button class="buy-btn">⚡</button>
-            </div>
-        </div>
-
-        <!-- РЯД 4 -->
-        <div class="product-card" onclick="openModal('мяу', 2200)">
+        <div class="product-card" onclick="openModal('Гашиш (мелкое)', 2000)">
             <div class="badges">
                 <span class="badge-discount">-10%</span>
                 <span class="badge-stock">В наличии</span>
             </div>
-            <img class="product-image" src="https://i.postimg.cc/85Mddw4H/image.jpg" alt="Товар 7">
-            <div class="product-title">Товар 7</div>
-            <div class="product-category">Размер: M</div>
-            <div class="stock-info">📦 В наличии: 12 шт.</div>
+            <img class="product-image" src="https://i.postimg.cc/85Mddw4H/image.jpg" alt="Гашиш мелкое">
+            <div class="product-title">Гашиш (мелкое)</div>
+            <div class="product-category">Размер: S</div>
+            <div class="stock-info">📦 В наличии: 18 шт.</div>
             <div class="product-footer">
                 <div>
-                    <span class="current-price">2 200 сом</span>
-                    <span class="old-price">2 500</span>
+                    <span class="current-price">2 000 сом</span>
+                    <span class="old-price">2 200</span>
+                </div>
+                <button class="buy-btn">⚡</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- РЯД 4: МЯУ -->
+    <div class="section-title">Каталог Мяу</div>
+    <div class="products-grid">
+        <div class="product-card" onclick="openModal('Мяу (большое)', 2600)">
+            <div class="badges">
+                <span class="badge-discount">-12%</span>
+                <span class="badge-stock">В наличии</span>
+            </div>
+            <img class="product-image" src="https://i.postimg.cc/85Mddw4H/image.jpg" alt="Мяу большое">
+            <div class="product-title">Мяу (большое)</div>
+            <div class="product-category">Размер: XL</div>
+            <div class="stock-info">📦 В наличии: 15 шт.</div>
+            <div class="product-footer">
+                <div>
+                    <span class="current-price">2 600 сом</span>
+                    <span class="old-price">2 950</span>
                 </div>
                 <button class="buy-btn">⚡</button>
             </div>
         </div>
 
-        <div class="product-card" onclick="openModal('мяу', 2700)">
+        <div class="product-card" onclick="openModal('Мяу (мелкое)', 1600)">
             <div class="badges">
                 <span class="badge-discount">-15%</span>
                 <span class="badge-stock">В наличии</span>
             </div>
-            <img class="product-image" src="https://i.postimg.cc/85Mddw4H/image.jpg" alt="Товар 8">
-            <div class="product-title">Товар 8</div>
-            <div class="product-category">Размер: L</div>
-            <div class="stock-info">📦 В наличии: 7 шт.</div>
+            <img class="product-image" src="https://i.postimg.cc/85Mddw4H/image.jpg" alt="Мяу мелкое">
+            <div class="product-title">Мяу (мелкое)</div>
+            <div class="product-category">Размер: S</div>
+            <div class="stock-info">📦 В наличии: 30 шт.</div>
             <div class="product-footer">
                 <div>
-                    <span class="current-price">2 700 сом</span>
-                    <span class="old-price">3 100</span>
+                    <span class="current-price">1 600 сом</span>
+                    <span class="old-price">1 900</span>
                 </div>
                 <button class="buy-btn">⚡</button>
             </div>
         </div>
-
     </div>
 
     <!-- Модалка заказа -->
