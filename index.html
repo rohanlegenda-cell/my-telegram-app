@@ -3,21 +3,280 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mini App</title>
-    <!-- Подключаем скрипт Telegram -->
+    <title>BABKA SHOP</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            user-select: none;
+        }
+
+        body {
+            background-color: #0b0f19;
+            color: #ffffff;
+            padding: 12px;
+            padding-bottom: 70px;
+        }
+
+        /* Шапка магазина */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .header-logo {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: #1e293b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+            color: #818cf8;
+        }
+
+        .header-title h1 {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .header-title p {
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #818cf8;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Сетка товаров */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        /* Карточка товара */
+        .product-card {
+            background: #131b2e;
+            border: 1px solid #1e293b;
+            border-radius: 16px;
+            padding: 10px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .badges {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            right: 8px;
+            display: flex;
+            justify-content: space-between;
+            z-index: 2;
+        }
+
+        .badge-discount {
+            background: #ef4444;
+            color: #fff;
+            font-size: 10px;
+            font-weight: bold;
+            padding: 3px 6px;
+            border-radius: 6px;
+        }
+
+        .badge-stock {
+            background: #10b981;
+            color: #fff;
+            font-size: 10px;
+            font-weight: 500;
+            padding: 3px 6px;
+            border-radius: 6px;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            background: #0f172a;
+        }
+
+        .product-title {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .product-category {
+            font-size: 11px;
+            color: #6366f1;
+            margin-bottom: 6px;
+        }
+
+        .stock-info {
+            font-size: 11px;
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+
+        .product-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+        }
+
+        .price-block {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .current-price {
+            font-size: 15px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .old-price {
+            font-size: 11px;
+            color: #64748b;
+            text-decoration: line-through;
+        }
+
+        .buy-btn {
+            background: #f59e0b;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #000;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .buy-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Нижнее меню */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 56px;
+            background: #0f172a;
+            border-top: 1px solid #1e293b;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            font-size: 11px;
+            color: #64748b;
+        }
+
+        .nav-item.active {
+            color: #818cf8;
+        }
+    </style>
 </head>
 <body>
-    <h1>Привет из Telegram Mini App!</h1>
-    <button id="main-btn">Нажми меня</button>
+
+    <div class="header">
+        <div class="header-logo">BS</div>
+        <div class="header-title">
+            <h1>BABKA SHOP</h1>
+            <p>Официальный бот-магазин</p>
+        </div>
+    </div>
+
+    <div class="section-title">Каталог МАРК</div>
+
+    <div class="products-grid">
+        <!-- Карточка 1: Большое -->
+        <div class="product-card">
+            <div class="badges">
+                <span class="badge-discount">-15%</span>
+                <span class="badge-stock">В наличии</span>
+            </div>
+            <img class="product-image" src="https://via.placeholder.com/150/131b2e/ffffff?text=MARK+BIG" alt="МАРК Большое">
+            <div class="product-title">МАРК (большое)</div>
+            <div class="product-category">Размер: XL</div>
+            <div class="stock-info">📦 В наличии: 10 шт.</div>
+            <div class="product-footer">
+                <div class="price-block">
+                    <span class="current-price">2 500 сом</span>
+                    <span class="old-price">3 000</span>
+                </div>
+                <button class="buy-btn" onclick="addToCart('МАРК (большое)', 2500)">⚡</button>
+            </div>
+        </div>
+
+        <!-- Карточка 2: Мелкое -->
+        <div class="product-card">
+            <div class="badges">
+                <span class="badge-discount">-20%</span>
+                <span class="badge-stock">В наличии</span>
+            </div>
+            <img class="product-image" src="https://via.placeholder.com/150/131b2e/ffffff?text=MARK+SMALL" alt="МАРК Мелкое">
+            <div class="product-title">МАРК (мелкое)</div>
+            <div class="product-category">Размер: S</div>
+            <div class="stock-info">📦 В наличии: 25 шт.</div>
+            <div class="product-footer">
+                <div class="price-block">
+                    <span class="current-price">1 500 сом</span>
+                    <span class="old-price">1 900</span>
+                </div>
+                <button class="buy-btn" onclick="addToCart('МАРК (мелкое)', 1500)">⚡</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <div class="nav-item">🎁 Бонусы</div>
+        <div class="nav-item active">🛍 Каталог</div>
+        <div class="nav-item">👤 Профиль</div>
+    </div>
 
     <script>
         const tg = window.Telegram.WebApp;
-        tg.expand(); // Разворачивает окно на весь экран
+        tg.expand();
 
-        document.getElementById('main-btn').addEventListener('click', () => {
-            tg.sendData("Кнопка нажата!"); // Отправка данных обратно боту
-        });
+        function addToCart(name, price) {
+            const data = {
+                product: name,
+                price: price
+            };
+            tg.sendData(JSON.stringify(data));
+        }
     </script>
 </body>
 </html>
