@@ -6,206 +6,55 @@
     <title>BABKA SHOP</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            user-select: none;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; user-select: none; }
+        body { background-color: #0b0f19; color: #ffffff; padding: 12px; padding-bottom: 80px; }
 
-        body {
-            background-color: #0b0f19;
-            color: #ffffff;
-            padding: 12px;
-            padding-bottom: 70px;
-        }
+        .header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .header-logo { width: 44px; height: 44px; border-radius: 10px; background: #1e293b; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #818cf8; }
+        .header-title h1 { font-size: 18px; }
+        .header-title p { font-size: 12px; color: #64748b; }
 
-        /* Шапка магазина */
-        .header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 16px;
-        }
-
-        .header-logo {
-            width: 44px;
-            height: 44px;
-            border-radius: 10px;
-            background: #1e293b;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 18px;
-            color: #818cf8;
-        }
-
-        .header-title h1 {
-            font-size: 18px;
-            font-weight: 700;
-        }
-
-        .header-title p {
-            font-size: 12px;
-            color: #64748b;
-        }
-
-        .section-title {
-            font-size: 14px;
-            font-weight: 600;
-            color: #818cf8;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+        .section-title { font-size: 14px; font-weight: 600; color: #818cf8; margin-bottom: 12px; text-transform: uppercase; }
 
         /* Сетка товаров */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-        }
+        .products-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .product-card { background: #131b2e; border: 1px solid #1e293b; border-radius: 16px; padding: 10px; cursor: pointer; position: relative; }
+        .product-card:active { transform: scale(0.98); }
 
-        /* Карточка товара */
-        .product-card {
-            background: #131b2e;
-            border: 1px solid #1e293b;
-            border-radius: 16px;
-            padding: 10px;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+        .badges { position: absolute; top: 8px; left: 8px; right: 8px; display: flex; justify-content: space-between; }
+        .badge-discount { background: #ef4444; font-size: 10px; padding: 3px 6px; border-radius: 6px; font-weight: bold; }
+        .badge-stock { background: #10b981; font-size: 10px; padding: 3px 6px; border-radius: 6px; }
 
-        .badges {
-            position: absolute;
-            top: 8px;
-            left: 8px;
-            right: 8px;
-            display: flex;
-            justify-content: space-between;
-            z-index: 2;
-        }
+        .product-image { width: 100%; height: 110px; object-fit: cover; border-radius: 10px; margin-top: 15px; margin-bottom: 8px; background: #0f172a; }
+        .product-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+        .product-category { font-size: 11px; color: #6366f1; margin-bottom: 6px; }
+        .stock-info { font-size: 11px; color: #64748b; margin-bottom: 10px; }
 
-        .badge-discount {
-            background: #ef4444;
-            color: #fff;
-            font-size: 10px;
-            font-weight: bold;
-            padding: 3px 6px;
-            border-radius: 6px;
-        }
+        .product-footer { display: flex; align-items: center; justify-content: space-between; }
+        .current-price { font-size: 15px; font-weight: 800; }
+        .old-price { font-size: 11px; color: #64748b; text-decoration: line-through; display: block; }
+        .buy-btn { background: #f59e0b; border: none; width: 32px; height: 32px; border-radius: 10px; color: #000; font-weight: bold; font-size: 16px; cursor: pointer; }
 
-        .badge-stock {
-            background: #10b981;
-            color: #fff;
-            font-size: 10px;
-            font-weight: 500;
-            padding: 3px 6px;
-            border-radius: 6px;
-        }
+        /* Всплывающее окно карточки (Модалка) */
+        .modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 100; align-items: flex-end; }
+        .modal.active { display: flex; }
+        .modal-content { background: #131b2e; border-top-left-radius: 20px; border-top-right-radius: 20px; width: 100%; padding: 20px; border-top: 1px solid #1e293b; max-height: 80vh; overflow-y: auto; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .close-btn { background: none; border: none; color: #fff; font-size: 20px; cursor: pointer; }
 
-        .product-image {
-            width: 100%;
-            height: 120px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-top: 15px;
-            margin-bottom: 8px;
-            background: #0f172a;
-        }
+        /* Счетчик + / - */
+        .counter-row { display: flex; justify-content: space-between; align-items: center; background: #0f172a; padding: 12px; border-radius: 12px; margin-bottom: 12px; }
+        .counter-controls { display: flex; align-items: center; gap: 12px; }
+        .btn-qty { background: #1e293b; border: none; color: #fff; width: 32px; height: 32px; border-radius: 8px; font-size: 18px; cursor: pointer; }
+        .btn-qty:active { background: #334155; }
 
-        .product-title {
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
+        /* Главная кнопка заказать */
+        .order-btn { width: 100%; background: #f59e0b; border: none; padding: 14px; border-radius: 12px; color: #000; font-weight: bold; font-size: 16px; margin-top: 10px; cursor: pointer; }
+        .order-btn:active { transform: scale(0.98); }
 
-        .product-category {
-            font-size: 11px;
-            color: #6366f1;
-            margin-bottom: 6px;
-        }
-
-        .stock-info {
-            font-size: 11px;
-            color: #64748b;
-            margin-bottom: 10px;
-        }
-
-        .product-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: auto;
-        }
-
-        .price-block {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .current-price {
-            font-size: 15px;
-            font-weight: 800;
-            color: #fff;
-        }
-
-        .old-price {
-            font-size: 11px;
-            color: #64748b;
-            text-decoration: line-through;
-        }
-
-        .buy-btn {
-            background: #f59e0b;
-            border: none;
-            width: 32px;
-            height: 32px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            color: #000;
-            font-weight: bold;
-            font-size: 16px;
-        }
-
-        .buy-btn:active {
-            transform: scale(0.95);
-        }
-
-        /* Нижнее меню */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 56px;
-            background: #0f172a;
-            border-top: 1px solid #1e293b;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            z-index: 10;
-        }
-
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2px;
-            font-size: 11px;
-            color: #64748b;
-        }
-
-        .nav-item.active {
-            color: #818cf8;
-        }
+        .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; height: 56px; background: #0f172a; border-top: 1px solid #1e293b; display: flex; justify-content: space-around; align-items: center; }
+        .nav-item { font-size: 11px; color: #64748b; }
+        .nav-item.active { color: #818cf8; }
     </style>
 </head>
 <body>
@@ -221,42 +70,66 @@
     <div class="section-title">Каталог МАРК</div>
 
     <div class="products-grid">
-        <!-- Карточка 1: Большое -->
-        <div class="product-card">
+        <!-- Карточка 1 -->
+        <div class="product-card" onclick="openModal('МАРК (большое)', 2500)">
             <div class="badges">
                 <span class="badge-discount">-15%</span>
                 <span class="badge-stock">В наличии</span>
             </div>
             <img class="product-image" src="https://via.placeholder.com/150/131b2e/ffffff?text=MARK+BIG" alt="МАРК Большое">
             <div class="product-title">МАРК (большое)</div>
-            <div class="product-category"></div>
+            <div class="product-category">Размер: XL</div>
             <div class="stock-info">📦 В наличии: 10 шт.</div>
             <div class="product-footer">
-                <div class="price-block">
+                <div>
                     <span class="current-price">2 500 сом</span>
                     <span class="old-price">3 000</span>
                 </div>
-                <button class="buy-btn" onclick="addToCart('МАРК (большое)', 2500)">⚡</button>
+                <button class="buy-btn">⚡</button>
             </div>
         </div>
 
-        <!-- Карточка 2: Мелкое -->
-        <div class="product-card">
+        <!-- Карточка 2 -->
+        <div class="product-card" onclick="openModal('МАРК (мелкое)', 1500)">
             <div class="badges">
                 <span class="badge-discount">-20%</span>
                 <span class="badge-stock">В наличии</span>
             </div>
             <img class="product-image" src="https://via.placeholder.com/150/131b2e/ffffff?text=MARK+SMALL" alt="МАРК Мелкое">
             <div class="product-title">МАРК (мелкое)</div>
-            <div class="product-category"></div>
+            <div class="product-category">Размер: S</div>
             <div class="stock-info">📦 В наличии: 25 шт.</div>
             <div class="product-footer">
-                <div class="price-block">
+                <div>
                     <span class="current-price">1 500 сом</span>
                     <span class="old-price">1 900</span>
                 </div>
-                <button class="buy-btn" onclick="addToCart('МАРК (мелкое)', 1500)">⚡</button>
+                <button class="buy-btn">⚡</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Модалка заказа -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Товар</h3>
+                <button class="close-btn" onclick="closeModal()">✕</button>
+            </div>
+
+            <div class="counter-row">
+                <div>
+                    <div style="font-weight: bold;" id="variant-name">Количество</div>
+                    <div style="font-size: 12px; color: #64748b;" id="modal-price">0 сом</div>
+                </div>
+                <div class="counter-controls">
+                    <button class="btn-qty" onclick="changeQty(-1)">-</button>
+                    <span id="qty-count" style="font-weight: bold; font-size: 16px;">1</span>
+                    <button class="btn-qty" onclick="changeQty(1)">+</button>
+                </div>
+            </div>
+
+            <button class="order-btn" onclick="sendOrder()">Оформить заказ (<span id="total-price">0</span> сом)</button>
         </div>
     </div>
 
@@ -270,12 +143,46 @@
         const tg = window.Telegram.WebApp;
         tg.expand();
 
-        function addToCart(name, price) {
+        let currentProduct = '';
+        let currentPrice = 0;
+        let count = 1;
+
+        function openModal(name, price) {
+            currentProduct = name;
+            currentPrice = price;
+            count = 1;
+            
+            document.getElementById('modal-title').innerText = name;
+            document.getElementById('variant-name').innerText = name;
+            document.getElementById('modal-price').innerText = price + ' сом';
+            updateTotal();
+            
+            document.getElementById('modal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+
+        function changeQty(delta) {
+            count += delta;
+            if (count < 1) count = 1;
+            updateTotal();
+        }
+
+        function updateTotal() {
+            document.getElementById('qty-count').innerText = count;
+            document.getElementById('total-price').innerText = currentPrice * count;
+        }
+
+        function sendOrder() {
             const data = {
-                product: name,
-                price: price
+                product: currentProduct,
+                count: count,
+                total: currentPrice * count
             };
             tg.sendData(JSON.stringify(data));
+            tg.close();
         }
     </script>
 </body>
