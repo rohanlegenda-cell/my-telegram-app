@@ -35,22 +35,19 @@
         .old-price { font-size: 11px; color: #64748b; text-decoration: line-through; display: block; }
         .buy-btn { background: #f59e0b; border: none; width: 32px; height: 32px; border-radius: 10px; color: #000; font-weight: bold; font-size: 16px; cursor: pointer; }
 
-        /* Всплывающее окно карточки (Модалка) */
+        /* Модальное окно */
         .modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 100; align-items: flex-end; }
         .modal.active { display: flex; }
         .modal-content { background: #131b2e; border-top-left-radius: 20px; border-top-right-radius: 20px; width: 100%; padding: 20px; border-top: 1px solid #1e293b; max-height: 80vh; overflow-y: auto; }
         .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
         .close-btn { background: none; border: none; color: #fff; font-size: 20px; cursor: pointer; }
 
-        /* Счетчик + / - */
+        /* Счетчик */
         .counter-row { display: flex; justify-content: space-between; align-items: center; background: #0f172a; padding: 12px; border-radius: 12px; margin-bottom: 12px; }
         .counter-controls { display: flex; align-items: center; gap: 12px; }
         .btn-qty { background: #1e293b; border: none; color: #fff; width: 32px; height: 32px; border-radius: 8px; font-size: 18px; cursor: pointer; }
-        .btn-qty:active { background: #334155; }
 
-        /* Главная кнопка заказать */
         .order-btn { width: 100%; background: #f59e0b; border: none; padding: 14px; border-radius: 12px; color: #000; font-weight: bold; font-size: 16px; margin-top: 10px; cursor: pointer; }
-        .order-btn:active { transform: scale(0.98); }
 
         .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; height: 56px; background: #0f172a; border-top: 1px solid #1e293b; display: flex; justify-content: space-around; align-items: center; }
         .nav-item { font-size: 11px; color: #64748b; }
@@ -70,14 +67,13 @@
     <div class="section-title">Каталог МАРК</div>
 
     <div class="products-grid">
-        <!-- Карточка 1 -->
+        <!-- РЯД 1 -->
         <div class="product-card" onclick="openModal('МАРК (большое)', 2500)">
             <div class="badges">
                 <span class="badge-discount">-15%</span>
                 <span class="badge-stock">В наличии</span>
             </div>
-            <!-- ВСТАВЬ ССЫЛКУ НА ФОТО ПЕРВОГО ТОВАРА НИЖЕ -->
-            <img class="product-image" src="https://i.postimg.cc/K8xHGGZk/photo-2026-08-18-18-47-31.jpg " alt="МАРК Большое">
+            <img class="product-image" src="https://i.postimg.cc/85Mddw4H/image.jpg" alt="МАРК Большое">
             <div class="product-title">МАРК (большое)</div>
             <div class="product-category">Размер: XL</div>
             <div class="stock-info">📦 В наличии: 10 шт.</div>
@@ -90,14 +86,12 @@
             </div>
         </div>
 
-        <!-- Карточка 2 -->
         <div class="product-card" onclick="openModal('МАРК (мелкое)', 1500)">
             <div class="badges">
                 <span class="badge-discount">-20%</span>
                 <span class="badge-stock">В наличии</span>
             </div>
-            <!-- ВСТАВЬ ССЫЛКУ НА ФОТО ВТОРОГО ТОВАРА НИЖЕ -->
-            <img class="product-image" src="https://i.postimg.cc/K8xHGGZk/photo-2026-08-18-18-47-31.jpg" alt="МАРК Мелкое">
+            <img class="product-image" src="https://i.postimg.cc/85Mddw4H/image.jpg" alt="МАРК Мелкое">
             <div class="product-title">МАРК (мелкое)</div>
             <div class="product-category">Размер: S</div>
             <div class="stock-info">📦 В наличии: 25 шт.</div>
@@ -109,6 +103,118 @@
                 <button class="buy-btn">⚡</button>
             </div>
         </div>
+
+        <!-- РЯД 2 -->
+        <div class="product-card" onclick="openModal('Товар 3', 2000)">
+            <div class="badges">
+                <span class="badge-discount">-10%</span>
+                <span class="badge-stock">В наличии</span>
+            </div>
+            <img class="product-image" src="https://i.postimg.cc/85Mddw4H/image.jpg" alt="Товар 3">
+            <div class="product-title">Товар 3</div>
+            <div class="product-category">Размер: M</div>
+            <div class="stock-info">📦 В наличии: 15 шт.</div>
+            <div class="product-footer">
+                <div>
+                    <span class="current-price">2 000 сом</span>
+                    <span class="old-price">2 200</span>
+                </div>
+                <button class="buy-btn">⚡</button>
+            </div>
+        </div>
+
+        <div class="product-card" onclick="openModal('Товар 4', 1800)">
+            <div class="badges">
+                <span class="badge-discount">-15%</span>
+                <span class="badge-stock">В наличии</span>
+            </div>
+            <img class="product-image" src="https://i.postimg.cc/85Mddw4H/image.jpg" alt="Товар 4">
+            <div class="product-title">Товар 4</div>
+            <div class="product-category">Размер: L</div>
+            <div class="stock-info">📦 В наличии: 8 шт.</div>
+            <div class="product-footer">
+                <div>
+                    <span class="current-price">1 800 сом</span>
+                    <span class="old-price">2 100</span>
+                </div>
+                <button class="buy-btn">⚡</button>
+            </div>
+        </div>
+
+        <!-- РЯД 3 -->
+        <div class="product-card" onclick="openModal('Товар 5', 3000)">
+            <div class="badges">
+                <span class="badge-discount">-5%</span>
+                <span class="badge-stock">В наличии</span>
+            </div>
+            <img class="product-image" src="https://i.postimg.cc/85Mddw4H/image.jpg" alt="Товар 5">
+            <div class="product-title">Товар 5</div>
+            <div class="product-category">Размер: XL</div>
+            <div class="stock-info">📦 В наличии: 5 шт.</div>
+            <div class="product-footer">
+                <div>
+                    <span class="current-price">3 000 сом</span>
+                    <span class="old-price">3 200</span>
+                </div>
+                <button class="buy-btn">⚡</button>
+            </div>
+        </div>
+
+        <div class="product-card" onclick="openModal('Товар 6', 1200)">
+            <div class="badges">
+                <span class="badge-discount">-25%</span>
+                <span class="badge-stock">В наличии</span>
+            </div>
+            <img class="product-image" src="https://i.postimg.cc/85Mddw4H/image.jpg" alt="Товар 6">
+            <div class="product-title">Товар 6</div>
+            <div class="product-category">Размер: S</div>
+            <div class="stock-info">📦 В наличии: 30 шт.</div>
+            <div class="product-footer">
+                <div>
+                    <span class="current-price">1 200 сом</span>
+                    <span class="old-price">1 600</span>
+                </div>
+                <button class="buy-btn">⚡</button>
+            </div>
+        </div>
+
+        <!-- РЯД 4 -->
+        <div class="product-card" onclick="openModal('Товар 7', 2200)">
+            <div class="badges">
+                <span class="badge-discount">-10%</span>
+                <span class="badge-stock">В наличии</span>
+            </div>
+            <img class="product-image" src="https://i.postimg.cc/85Mddw4H/image.jpg" alt="Товар 7">
+            <div class="product-title">Товар 7</div>
+            <div class="product-category">Размер: M</div>
+            <div class="stock-info">📦 В наличии: 12 шт.</div>
+            <div class="product-footer">
+                <div>
+                    <span class="current-price">2 200 сом</span>
+                    <span class="old-price">2 500</span>
+                </div>
+                <button class="buy-btn">⚡</button>
+            </div>
+        </div>
+
+        <div class="product-card" onclick="openModal('Товар 8', 2700)">
+            <div class="badges">
+                <span class="badge-discount">-15%</span>
+                <span class="badge-stock">В наличии</span>
+            </div>
+            <img class="product-image" src="https://i.postimg.cc/85Mddw4H/image.jpg" alt="Товар 8">
+            <div class="product-title">Товар 8</div>
+            <div class="product-category">Размер: L</div>
+            <div class="stock-info">📦 В наличии: 7 шт.</div>
+            <div class="product-footer">
+                <div>
+                    <span class="current-price">2 700 сом</span>
+                    <span class="old-price">3 100</span>
+                </div>
+                <button class="buy-btn">⚡</button>
+            </div>
+        </div>
+
     </div>
 
     <!-- Модалка заказа -->
